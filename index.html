@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Winamp</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="winamp">
+		<div class="winamp-header">
+			<img src="img/winamp-header.jpg" alt="">
+		</div>
+		<div class="winamp-header-main">
+			<div class="winamp-header-main-left">
+				<span>00:00</span>
+			</div>
+			<div class="winamp-header-main-right">
+				<div class="winamp-header-main-right-title">
+					<p class="marquee"><span class="winamp-header-main-right-name">audio filename</span><span class="winamp-header-main-right-time">duration</span></p>
+				</div>
+				<div class="winamp-header-main-right-quality">
+					<div class="winamp-header-main-right-quality-kbps">320</div>
+						<span class="winamp-header-main-right-quality-kbps-desc">kbps</span>
+					<div class="winamp-header-main-right-quality-khz">44</div>
+						<span class="winamp-header-main-right-quality-kbps-desc">kHz</span>
+					<div class="winamp-header-main-right-quality-music">
+						<span class="winamp-header-main-right-quality-mono">mono</span>
+						<span class="winamp-header-main-right-quality-stereo">stereo</span>
+					</div>
+				</div>
+				<div class="winamp-header-main-right-volume">
+					<button></button>
+				</div>
+			</div>
+			<div class="winamp-header-main-bottom">
+				<div class="winamp-header-main-bottom-rewind" id="winamp-header-main-bottom-rewind">
+					<button id="btn-rewind"></button>
+				</div>
+			</div>
+		</div>
+		<div class="winamp-header-bottom">
+			<button title="Prev track" id="btn-prev"	class="btn-prev"></button>
+			<button title="Play track" id="btn-play" class="btn-play"></button>
+			<button title="Pause track" id="btn-pause" class="btn-pause"></button>
+			<button title="Reset track" id="btn-reset" class="btn-reset"></button>
+			<button title="Next track" id="btn-next" class="btn-next"></button>
+			<button title="Open playlist" id="btn-playlist" class="btn-playlist btn-playlist--indent"></button>
+			<button title="track" class="btn-shuffle"></button>
+			<div class="logo">
+				<img class="logo" src="img/winamp-logo.png" alt="Логотип Winamp">
+			</div>
+		</div>
+		<div id="winamp-playlist" class="winamp-playlist">
+			<div class="winamp-playlist-header">
+				<img src="img/winamp-playlist-header.jpg" alt="">
+			</div>
+			<div class="winamp-playlist-content">
+				<label class="inputFileLabel" for="inputFile">Choose a files</label>
+				<input id="inputFile" class="inputFile" type="file" name="files[]" multiple webkitdirectory>
+				<span class="dragFilesHere">or drag it here</span>
+			</div>
+		</div>
+	</div>
+	
+	<script src="libs/id3-minimized.js"></script>
+	<script src="js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+@font-face {
+  font-family: "Exo2RegularCondensed";
+  src: url("../font/Exo2RegularCondensed.woff2") format("woff2"), url("../font/Exo2RegularCondensed.ttf") format("truetype"), url("../font/Exo2RegularCondensed.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  font-size: 13px;
+  font-family: "Exo2RegularCondensed", Arial, sans-serif; }
+
+ul {
+  list-style: none; }
+
+.winamp {
+  width: 274px;
+  border: 1px solid #506276;
+  padding: 0 2px 2px 2px;
+  background: radial-gradient(#3f3e60, #1c1b2b);
+  color: #37d739; }
+
+.winamp-header img {
+  display: block;
+  width: 100%; }
+
+.winamp-header-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 6px 2px 0 5px;
+  margin-top: 2px;
+  border: 1px solid #595b68;
+  border-bottom: none; }
+
+.winamp-header-main-left {
+  position: relative;
+  width: 90px;
+  height: 44px;
+  background-color: #000;
+  border-top: 1px solid #18171d;
+  border-left: 1px solid #18171d;
+  border-right: 1px solid #6c697a;
+  border-bottom: 1px solid #6c697a; }
+  .winamp-header-main-left span {
+    position: absolute;
+    right: 3px;
+    top: 8px;
+    font-size: 28px;
+    line-height: 15px;
+    letter-spacing: 2px; }
+
+.winamp-header-main-right-title {
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  margin-bottom: 4px;
+  padding: 0px 4px;
+  width: 162px;
+  height: 15px;
+  border-top: 1px solid #242440;
+  border-left: 1px solid #282544;
+  border-right: 1px solid #7a6697;
+  border-bottom: 1px solid #7a6697;
+  font-size: 11px;
+  overflow: hidden; }
+  .winamp-header-main-right-title span {
+    letter-spacing: 1px;
+    display: inline-block; }
+  .winamp-header-main-right-title p {
+    position: absolute;
+    -webkit-animation: marquee 10s linear infinite;
+            animation: marquee 10s linear infinite; }
+
+.winamp-header-main-right-quality {
+  font-size: 10px;
+  line-height: 10px;
+  margin-bottom: 8px; }
+  .winamp-header-main-right-quality span {
+    cursor: pointer; }
+
+.winamp-header-main-right-quality-kbps-desc {
+  color: #fff; }
+
+.winamp-header-main-right-quality-music {
+  display: inline-block;
+  float: right;
+  margin-right: 2px; }
+
+.winamp-header-main-right-quality-kbps,
+.winamp-header-main-right-quality-khz {
+  display: inline-block;
+  padding-bottom: 2px;
+  height: 12px;
+  background-color: #000;
+  border-top: 1px solid #242440;
+  border-left: 1px solid #282544;
+  border-right: 1px solid #7a6697;
+  border-bottom: 1px solid #7a6697;
+  margin-right: 3px; }
+
+.winamp-header-main-right-quality-kbps {
+  width: 18px; }
+
+.winamp-header-main-right-quality-khz {
+  width: 13px; }
+
+.winamp-header-main-right-quality-mono {
+  color: #fff; }
+
+.winamp-header-main-right-quality-stereo {
+  color: #37d739; }
+
+.winamp-header-main-right-volume {
+  position: relative;
+  background-color: #ce0b09;
+  height: 5px;
+  border-top: 1px solid #450d10;
+  border-bottom: 1px solid #bb617d;
+  width: 38%;
+  border-radius: 10px; }
+  .winamp-header-main-right-volume button {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 14px;
+    height: 11px;
+    font-size: 0;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #000;
+    background: url("../img/btn-volume.jpg") #efe0b5 center center; }
+    .winamp-header-main-right-volume button:hover {
+      opacity: 0.8; }
+
+.winamp-header-main-bottom {
+  width: 100%; }
+
+.winamp-header-main-bottom-rewind {
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 250px;
+  height: 12px;
+  margin-top: 8px;
+  border-top: 2px solid #1c1d31;
+  border-left: 2px solid #1c1d31;
+  border-bottom: 2px solid #6c6a80;
+  border-right: 2px solid #6c6a80; }
+  .winamp-header-main-bottom-rewind button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 10px;
+    font-size: 0;
+    outline: none;
+    cursor: pointer;
+    background: url("../img/btn-rewind.jpg") #efe0b5 center center;
+    -webkit-transition: all 1s;
+    transition: all 1s; }
+    .winamp-header-main-bottom-rewind button:hover {
+      opacity: 0.8; }
+
+.winamp-header-bottom {
+  position: relative;
+  padding: 6px 10px 7px;
+  border: 1px solid #595b68;
+  border-top: none;
+  font-size: 0; }
+  .winamp-header-bottom button {
+    height: 16px;
+    width: 22px;
+    border-left: 1px solid #a6b3bc;
+    border-top: 1px solid #a6b3bc;
+    border-bottom: 1px solid #525e6a;
+    border-right: 1px solid #525e6a;
+    outline: none;
+    cursor: pointer;
+    background-position: center center;
+    background-color: #afbdc8;
+    display: inline-block;
+    vertical-align: middle; }
+    .winamp-header-bottom button:hover {
+      opacity: 0.8; }
+  .winamp-header-bottom .btn-shuffle {
+    width: 45px;
+    height: 13px; }
+
+.btn-playlist--indent {
+  margin: 0 6px; }
+
+.btn-prev {
+  background-image: url("../img/btn-prev.jpg"); }
+
+.btn-play {
+  background-image: url("../img/btn-play.jpg"); }
+
+.btn-pause {
+  background-image: url("../img/btn-pause.jpg"); }
+
+.btn-reset {
+  background-image: url("../img/btn-reset.jpg"); }
+
+.btn-next {
+  background-image: url("../img/btn-next.jpg"); }
+
+.btn-playlist {
+  background-image: url("../img/btn-playlist.jpg"); }
+
+.btn-shuffle {
+  background-image: url("../img/btn-shuffle.jpg"); }
+
+.logo {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  right: 4px;
+  top: 3px; }
+  .logo img {
+    display: block; }
+
+.marquee {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 95%; }
+  .marquee span {
+    height: 15px;
+    white-space: nowrap; }
+
+.winamp-header-main-right-name {
+  margin-right: 10px; }
+
+.marquee:hover {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused; }
+
+@-webkit-keyframes marquee {
+  0% {
+    left: 180px; }
+  100% {
+    left: -180px; } }
+
+@keyframes marquee {
+  0% {
+    left: 180px; }
+  100% {
+    left: -180px; } }
+.winamp-playlist ul {
+  border: 1px solid #506276;
+  border-top: none;
+  padding: 3px 3px 3px 3px; }
+  .winamp-playlist ul li {
+    cursor: pointer; }
+
+.winamp-playlist-header {
+  text-align: center; }
+
+.winamp-playlist-header img {
+  display: block;
+  width: 100%; }
+
+.winamp-playlist-content {
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 70px;
+  border: 1px solid #73738d;
+  border-top: none;
+  padding: 3px 3px 0 3px;
+  text-align: center; }
+
+.inputFile {
+  display: none; }
+
+.inputFileLabel {
+  width: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: auto;
+  border: 1px solid transparent;
+  border-radius: 40px;
+  cursor: pointer;
+  margin: auto; }
+  .inputFileLabel:hover {
+    border: 1px solid #37d739;
+    border-radius: 40px; }
+
+.dragFilesHere {
+  font-weight: bold;
+  font-size: 14px;
+  margin: auto;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #37d739;
+  border-radius: 10px;
+  line-height: 30px; }
+
+.active-track {
+  color: #fff !important;
+  cursor: pointer; }
+
+/*# sourceMappingURL=style.css.map */

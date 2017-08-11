@@ -45,7 +45,7 @@ contentDragAndDrop.addEventListener("drop", function(e){
 
 		for (var song in files) {
 			if (!files[song].hasOwnProperty('name') && !(typeof(files[song].name) === 'undefined')) {
-				playlistContent += '<li onclick="playFromPlaylist(' + i + ')" class="playListTrack"><span id="trackDesc' + i + '">' + files[song].name + '</span><audio controls class="track" id="audioHidden' + i + '" src="' + tracksDir + files[song].name + '"></audio></li>';
+				playlistContent += '<li onclick="playFromPlaylist(' + i + ')" class="playListTrack"><span id="trackDesc' + i + '">' + files[song].name + '</span><audio class="track" id="audioHidden' + i + '" src="' + tracksDir + files[song].name + '"></audio></li>';
 				i++;
 			};
 		};

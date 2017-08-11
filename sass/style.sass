@@ -75,7 +75,7 @@ ul
 		display: inline-block
 	p
 		position: absolute
-		animation: marquee 10s linear infinite
+		animation: marquee 10s linear infinite alternate
 
 .winamp-header-main-right-quality
 	font-size: 10px
@@ -162,7 +162,6 @@ ul
 		outline: none
 		cursor: pointer
 		background: url('../img/btn-rewind.jpg') #efe0b5 center center
-		transition: all 1s
 		&:hover
 			opacity: 0.8
 
@@ -306,3 +305,19 @@ ul
 .active-track
 	color: #fff!important
 	cursor: pointer
+
+.transition-rewind
+	transition: left 1s
+
+.notransition-rewind
+	transition: none !important
+
+
+.lazyScroll
+	animation: lazyScroll linear
+
+@keyframes lazyScroll
+	from
+		left: 0px
+	to
+		left: 216px

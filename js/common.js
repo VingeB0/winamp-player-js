@@ -167,28 +167,51 @@ function showActiveTrackInPlaylist(){
 	};
 	document.querySelector('#audioHidden' + currentTrack).parentNode.className += " active-track";
 };
+// 216
 
 function lengthTrack(trackId) {
+	btnRewind.classList.remove('lazyScroll');
 	var audioHiddenPlay = document.querySelector('#audioHidden' + currentTrack);
 	var trackWidth = Math.floor(audioHiddenPlay.duration);
-	var updateLengthTrack = setInterval(function(){
-		var persentCurTime = trackWidth*audioHiddenPlay.currentTime/100;
-		btnRewind.style.left = persentCurTime + 'px';
-		console.log(persentCurTime);
-	}, 100);
-	// var fieldRewindWidth = fieldRewind.offsetWidth-30; //250
-	// var trackWidth = Math.floor(audioHiddenPlay.duration); //153
-	// console.log(trackWidth)
-	// var everyCurTime = (fieldRewindWidth/trackWidth);
-	// var currentTime0 = 0;
-	// var endLengthTrack = setInterval(function() {
-	// 	btnRewind.style.left = currentTime0 + 'px';
-	// 	currentTime0 = currentTime0 + everyCurTime;
-	// 	console.log(Math.floor(audioHiddenPlay.currentTime));
-	// 	console.log(Math.floor(trackWidth));
-	// 	if (Math.floor(audioHiddenPlay.currentTime) == trackWidth) {
-	// 		clearInterval(endLengthTrack);
-	// 		audioNext();
-	// 	};
-	// }, 1000);
+	// btnRewind.style.animationPlayState = 'initial';
+	btnRewind.style.animationDuration = trackWidth + 's';
+
+	setTimeout(function() {
+		btnRewind.style.animationDuration = "none";
+		// audioNext();
+	},trackWidth*1000);
+
+	setTimeout(function() {
+		btnRewind.style.animationDuration = "none";
+		btnRewind.classList.remove('lazyScroll');
+		btnRewind.classList.add('lazyScroll');
+	},1);
+
+	// var timeSettimeout = trackWidth*1000; 
+	// function func() {
+	// 	btnRewind.classList.remove('lazyScroll');
+	// };
+	// setTimeout(func ,timeSettimeout);
+	// console.log(timeSettimeout);
 };
+
+// function lengthTrack(trackId) {
+
+// 	var audioHiddenPlay = document.querySelector('#audioHidden' + currentTrack);
+// 	var trackWidth = Math.floor(audioHiddenPlay.duration);
+// 	console.log(trackWidth);
+// 	var updateLengthTrack = setInterval(function(){
+// 		btnRewind.classList.add('transition-rewind');
+// 		var persentCurTime = (audioHiddenPlay.currentTime*100)/trackWidth;
+// 		btnRewind.style.left = persentCurTime + '%';
+// 		console.log(persentCurTime);
+// 		if (persentCurTime >= 100) {
+// 			clearInterval(updateLengthTrack);
+// 			btnRewind.classList.remove('transition-rewind');
+// 			btnRewind.classList.add('notransition-rewind');
+// 			btnRewind.style.left = '0';
+// 			audioNext();
+// 			btnRewind.classList.remove('notransition-rewind');
+// 		}
+// 	}, 100);
+// };

@@ -89,8 +89,8 @@ ul {
     display: inline-block; }
   .winamp-header-main-right-title p {
     position: absolute;
-    -webkit-animation: marquee 10s linear infinite;
-            animation: marquee 10s linear infinite; }
+    -webkit-animation: marquee 10s linear infinite alternate;
+            animation: marquee 10s linear infinite alternate; }
 
 .winamp-header-main-right-quality {
   font-size: 10px;
@@ -176,9 +176,7 @@ ul {
     font-size: 0;
     outline: none;
     cursor: pointer;
-    background: url("../img/btn-rewind.jpg") #efe0b5 center center;
-    -webkit-transition: all 1s;
-    transition: all 1s; }
+    background: url("../img/btn-rewind.jpg") #efe0b5 center center; }
     .winamp-header-main-bottom-rewind button:hover {
       opacity: 0.8; }
 
@@ -336,5 +334,29 @@ ul {
 .active-track {
   color: #fff !important;
   cursor: pointer; }
+
+.transition-rewind {
+  -webkit-transition: left 1s;
+  transition: left 1s; }
+
+.notransition-rewind {
+  -webkit-transition: none !important;
+  transition: none !important; }
+
+.lazyScroll {
+  -webkit-animation: lazyScroll linear;
+          animation: lazyScroll linear; }
+
+@-webkit-keyframes lazyScroll {
+  from {
+    left: 0px; }
+  to {
+    left: 216px; } }
+
+@keyframes lazyScroll {
+  from {
+    left: 0px; }
+  to {
+    left: 216px; } }
 
 /*# sourceMappingURL=style.css.map */

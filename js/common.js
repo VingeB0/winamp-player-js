@@ -1,5 +1,5 @@
 "use strict";
-//длина дива 100% - дюрейтион который перевести в проценты и двигать ползунок через сет интервал
+
 var audioHidden = document.querySelector('#audioHidden');
 var btnPlay = document.querySelector('#btn-play');
 var btnPause = document.querySelector('#btn-pause');
@@ -7,33 +7,18 @@ var btnReset = document.querySelector('#btn-reset');
 var btnPrev = document.querySelector('#btn-prev');
 var btnNext = document.querySelector('#btn-next');
 var btnRewind = document.querySelector('#btn-rewind');
-var fieldRewind = document.querySelector('#winamp-header-main-bottom-rewind');
+var fieldRewind = document.querySelector('#winamp-main-bottom__rewind');
 var btnTogglePlaylist = document.querySelector('#btn-playlist');
-var audioTitle = document.querySelector('.winamp-header-main-right-title');
-var audioTitleName = document.querySelector('.winamp-header-main-right-name');
-var audioTitleTime = document.querySelector('.winamp-header-main-right-time');
-var currentTimeBlock = document.querySelector('.winamp-header-main-left span');
-var winampPlaylist = document.querySelector('#winamp-playlist');
+var audioTitle = document.querySelector('.winamp-main-right-title');
+var audioTitleName = document.querySelector('.winamp-main-right__marquee-name');
+var audioTitleTime = document.querySelector('.winamp-main-right__marquee-time');
+var currentTimeBlock = document.querySelector('.winamp-main-left span');
 var tracksDir = 'audio/';
 
 var playingStatus = false;
 var currentTrack = 0;
 
-var selectedInput = document.querySelector('#inputFile');
-selectedInput.addEventListener('change', function(){
-	var playListContainer = document.createElement('ul');
-	var playlistContent = '';
-	for (var song in selectedInput.files) {
-		if (!selectedInput.files[song].hasOwnProperty('name') && !(typeof(selectedInput.files[song].name) === 'undefined')) {
-			playlistContent += '<li class="playListTrack"> ' +  selectedInput.files[song].name + ' </li>';
-		};
-	};
-	playListContainer.innerHTML = playlistContent;
-	winampPlaylist.appendChild(playListContainer);
-});
-
 var contentDragAndDrop = document.querySelector('.winamp-playlist-content');
-
 contentDragAndDrop.addEventListener("drop", function(e){
 	e.stopPropagation();
 	e.preventDefault();
@@ -51,7 +36,6 @@ contentDragAndDrop.addEventListener("drop", function(e){
 		};
 		playListContainer.innerHTML = playlistContent;
 		winampPlaylist.appendChild(playListContainer);
-		// loadDuration();
 });
 
 contentDragAndDrop.addEventListener("dragenter", function(e){
@@ -167,18 +151,15 @@ function showActiveTrackInPlaylist(){
 	};
 	document.querySelector('#audioHidden' + currentTrack).parentNode.className += " active-track";
 };
-// 216
 
 function lengthTrack(trackId) {
 	btnRewind.classList.remove('lazyScroll');
 	var audioHiddenPlay = document.querySelector('#audioHidden' + currentTrack);
 	var trackWidth = Math.floor(audioHiddenPlay.duration);
-	// btnRewind.style.animationPlayState = 'initial';
 	btnRewind.style.animationDuration = trackWidth + 's';
 
 	setTimeout(function() {
 		btnRewind.style.animationDuration = "none";
-		// audioNext();
 	},trackWidth*1000);
 
 	setTimeout(function() {
@@ -186,32 +167,18 @@ function lengthTrack(trackId) {
 		btnRewind.classList.remove('lazyScroll');
 		btnRewind.classList.add('lazyScroll');
 	},1);
-
-	// var timeSettimeout = trackWidth*1000; 
-	// function func() {
-	// 	btnRewind.classList.remove('lazyScroll');
-	// };
-	// setTimeout(func ,timeSettimeout);
-	// console.log(timeSettimeout);
 };
 
-// function lengthTrack(trackId) {
+var winampPlaylist = document.querySelector('#winamp-playlist');
+btnTogglePlaylist.addEventListener('click', function(){
+	winampPlaylist.classList.toggle('hide');
+});
 
-// 	var audioHiddenPlay = document.querySelector('#audioHidden' + currentTrack);
-// 	var trackWidth = Math.floor(audioHiddenPlay.duration);
-// 	console.log(trackWidth);
-// 	var updateLengthTrack = setInterval(function(){
-// 		btnRewind.classList.add('transition-rewind');
-// 		var persentCurTime = (audioHiddenPlay.currentTime*100)/trackWidth;
-// 		btnRewind.style.left = persentCurTime + '%';
-// 		console.log(persentCurTime);
-// 		if (persentCurTime >= 100) {
-// 			clearInterval(updateLengthTrack);
-// 			btnRewind.classList.remove('transition-rewind');
-// 			btnRewind.classList.add('notransition-rewind');
-// 			btnRewind.style.left = '0';
-// 			audioNext();
-// 			btnRewind.classList.remove('notransition-rewind');
-// 		}
-// 	}, 100);
-// };
+var body = document.querySelector('body');
+body.addEventListener("drop", prevDefault);
+body.addEventListener("dragenter", psrevDefault);
+body.addEventListener("dragover", prevDefault);
+
+function prevDefault(e){
+	e.preventDefault();
+};

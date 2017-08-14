@@ -1,5 +1,5 @@
-// npm i http-server npm run server http-server ./ -o -c-1
-@import "font.sass"
+@import "_font.sass"
+@import "_vars.sass"
 
 *
 	margin: 0
@@ -7,57 +7,63 @@
 	box-sizing: border-box
 
 body
-	display: flex
-	justify-content: center
-	align-content: center
 	font-size: 13px
-	font-family: 'Exo2RegularCondensed', Arial, sans-serif
+	font-family: $mainFont, $defaultFonts
+	height: 100vh
 
 ul
 	list-style: none
 
+.hide
+	display: none
+
+.wrap-winamp
+	display: flex
+	justify-content: center
+	align-content: center
+
 .winamp
 	width: 274px
-	border: 1px solid #506276
+	border: 1px solid $outsideBorder
 	padding: 0 2px 2px 2px
 	background: -webkit-radial-gradient(rgb(63, 62, 96), rgb(28, 27, 43))
 	background: radial-gradient(rgb(63, 62, 96), rgb(28, 27, 43))
-	color: #37d739
+	color: $greenColor
 
 .winamp-header
-	img
-		display: block
-		width: 100%
+	padding-top: 14px
+	background: url('../img/sprite.png') no-repeat 0 0
+	background-size: cover
 
-.winamp-header-main
+.winamp-main
 	display: flex
 	flex-direction: row
 	flex-wrap: wrap
 	justify-content: space-between
 	padding: 6px 2px 0 5px
 	margin-top: 2px
-	border: 1px solid #595b68
+	border: 1px solid $innerBorder
 	border-bottom: none
 
-.winamp-header-main-left
+.winamp-main-left
 	position: relative
 	width: 90px
 	height: 44px
 	background-color: #000
-	border-top: 1px solid #18171d
-	border-left: 1px solid #18171d
-	border-right: 1px solid #6c697a
-	border-bottom: 1px solid #6c697a
+	border-top: 1px solid $mainTimeBorderLeft
+	border-left: 1px solid $mainTimeBorderLeft
+	border-right: 1px solid $mainTimeBorderRight
+	border-bottom: 1px solid $mainTimeBorderRight
 	span
 		position: absolute
 		right: 3px
 		top: 8px
-		font-family: 'digital-7', Arial, sans-serif
+		font-family: $timeFont, $defaultFonts
 		font-size: 30px
 		line-height: 15px
 		letter-spacing: 2px
 
-.winamp-header-main-right-title
+.winamp-main-right__title
 	position: relative
 	overflow: hidden
 	background-color: #000
@@ -65,10 +71,10 @@ ul
 	padding: 0px 4px
 	width: 162px
 	height: 15px
-	border-top: 1px solid #242440
-	border-left: 1px solid #282544
-	border-right: 1px solid #7a6697
-	border-bottom: 1px solid #7a6697
+	border-top: 1px solid $mainQualityBorderLeft
+	border-left: 1px solid $mainQualityBorderLeft
+	border-right: 1px solid $mainQualityBorderRight
+	border-bottom: 1px solid $mainQualityBorderRight
 	font-size: 11px
 	overflow: hidden
 	span
@@ -76,53 +82,53 @@ ul
 		display: inline-block
 	p
 		position: absolute
-		animation: marquee 10s linear infinite alternate
+		animation: winamp-main-right__marquee 10s linear infinite alternate
 
-.winamp-header-main-right-quality
+.winamp-main-right__quality
 	font-size: 10px
 	line-height: 10px
 	margin-bottom: 8px
 	span
 		cursor: pointer
 
-.winamp-header-main-right-quality-kbps-desc
+.winamp-main-right__quality-kbps-desc
 	color: #fff
 
-.winamp-header-main-right-quality-music
+.winamp-main-right__quality-music
 	display: inline-block
 	float: right
 	margin-right: 2px
 
-.winamp-header-main-right-quality-kbps,
-.winamp-header-main-right-quality-khz
+.winamp-main-right__quality-kbps,
+.winamp-main-right__quality-khz
 	display: inline-block
 	padding-bottom: 2px
 	height: 12px
 	background-color: #000
-	border-top: 1px solid #242440
-	border-left: 1px solid #282544
-	border-right: 1px solid #7a6697
-	border-bottom: 1px solid #7a6697
+	border-top: 1px solid $mainQualityBorderLeft
+	border-left: 1px solid $mainQualityBorderLeft
+	border-right: 1px solid $mainQualityBorderRight
+	border-bottom: 1px solid $mainQualityBorderRight
 	margin-right: 3px
 
-.winamp-header-main-right-quality-kbps
+.winamp-main-right__quality-kbps
 	width: 18px
 
-.winamp-header-main-right-quality-khz
+.winamp-main-right__quality-khz
 	width: 13px
 
-.winamp-header-main-right-quality-mono
+.winamp-main-right__quality-mono
 	color: #fff
 
-.winamp-header-main-right-quality-stereo
-	color: #37d739
+.winamp-main-right__quality-stereo
+	color: $greenColor
 
-.winamp-header-main-right-volume
+.winamp-main-right__volume
 	position: relative
-	background-color: #ce0b09
+	background-color: $volumeBgColor
 	height: 5px
-	border-top: 1px solid #450d10
-	border-bottom: 1px solid #bb617d
+	border-top: 1px solid $volumeBorderTop
+	border-bottom: 1px solid $volumeBorderBottom
 	width: 38%
 	border-radius: 10px
 	button
@@ -135,24 +141,24 @@ ul
 		outline: none
 		cursor: pointer
 		border: 1px solid #000
-		background: url('../img/btn-volume.jpg') #efe0b5 center center
+		background: url('../img/sprite.png') $volumeBtnBg -119px 15px
 		&:hover
 			opacity: 0.8
 
-.winamp-header-main-bottom
+.winamp-main-bottom
 	width: 100%
 
-.winamp-header-main-bottom-rewind
+.winamp-main-bottom__rewind
 	position: relative
 	margin: 0 auto
 	max-width: 100%
 	width: 250px
 	height: 12px
 	margin-top: 8px
-	border-top: 2px solid #1c1d31
-	border-left: 2px solid #1c1d31
-	border-bottom: 2px solid #6c6a80
-	border-right: 2px solid #6c6a80
+	border-top: 2px solid $rewindBtnBorderLeft
+	border-left: 2px solid $rewindBtnBorderLeft
+	border-bottom: 2px solid $rewindBtnDorderRight
+	border-right: 2px solid $rewindBtnDorderRight
 	button
 		position: absolute
 		left: 0
@@ -162,27 +168,25 @@ ul
 		font-size: 0
 		outline: none
 		cursor: pointer
-		background: url('../img/btn-rewind.jpg') #efe0b5 center center
+		background: url('../img/sprite.png') $volumeBtnBg -43px 25px
 		&:hover
 			opacity: 0.8
 
-.winamp-header-bottom
+.winamp-bottom
 	position: relative
 	padding: 6px 10px 7px
-	border: 1px solid #595b68
+	border: 1px solid $innerBorder
 	border-top: none
 	font-size: 0
 	button
 		height: 16px
 		width: 22px
-		border-left: 1px solid #a6b3bc
-		border-top: 1px solid #a6b3bc
-		border-bottom: 1px solid #525e6a
-		border-right: 1px solid #525e6a
+		border-left: 1px solid $mainBtnBorderLeft
+		border-top: 1px solid $mainBtnBorderLeft
+		border-bottom: 1px solid $mainBtnBorderRight
+		border-right: 1px solid $mainBtnBorderRight
 		outline: none
 		cursor: pointer
-		background-position: center center
-		background-color: #afbdc8
 		display: inline-block
 		vertical-align: middle
 		&:hover
@@ -195,36 +199,30 @@ ul
 	margin: 0 6px
 
 .btn-prev
-	background-image: url('../img/btn-prev.jpg')
-
+	background: url('../img/sprite.png') $imageBg -20px 15px
 .btn-play
-	background-image: url('../img/btn-play.jpg')
-
+	background: url('../img/sprite.png') $imageBg -60px 15px
 .btn-pause
-	background-image: url('../img/btn-pause.jpg')
-
+	background: url('../img/sprite.png') $imageBg -40px 15px
 .btn-reset
-	background-image: url('../img/btn-reset.jpg')
-
+	background: url('../img/sprite.png') $imageBg -80px 15px
 .btn-next
-	background-image: url('../img/btn-next.jpg')
-
+	background: url('../img/sprite.png') $imageBg 0px 15px
 .btn-playlist
-	background-image: url('../img/btn-playlist.jpg')
-
+	background: url('../img/sprite.png') $imageBg -100px 15px
 .btn-shuffle
-	background-image: url('../img/btn-shuffle.jpg')
+	background: url('../img/sprite.png') $imageBg 0px 26px
 
-.logo
-	width: 18px
-	height: 18px
+.winamp-bottom__logo
 	position: absolute
 	right: 4px
-	top: 3px
+	top: 6px
 	img
+		width: 18px
+		height: 18px
 		display: block
 
-.marquee
+.winamp-main-right__marquee
 	display: flex
 	flex-flow: row nowrap
 	justify-content: space-between
@@ -233,35 +231,32 @@ ul
 		height: 15px
 		white-space: nowrap
 
-.winamp-header-main-right-name
+.winamp-main-right__marquee-name
 	margin-right: 10px
 
-.marquee:hover
+.winamp-main-right__marquee:hover
 	animation-play-state: paused
 
-@keyframes marquee
+@keyframes winamp-main-right__marquee
 	0%
 		left: 180px
-	// 99%
-		// left: -180px
 	100%
 		left: -180px
 
 .winamp-playlist
 	ul
-		border: 1px solid #506276
+		border: 1px solid $outsideBorder
 		border-top: none
 		padding: 3px 3px 3px 3px
 		li
 			cursor: pointer
 
 .winamp-playlist-header
-	text-align: center
-
-.winamp-playlist-header
-	img
-		display: block
-		width: 100%
+	padding-top: 13px
+	background: url('../img/sprite.png') no-repeat 0 -13px
+	background-size: cover
+	border-left: 1px solid $innerBorderPlaylist
+	border-right: 1px solid $innerBorderPlaylist
 
 .winamp-playlist-content
 	display: -webkit-flex
@@ -269,50 +264,27 @@ ul
 	display: -ms-flex
 	display: -o-flex
 	display: flex
-	flex-flow: column wrap
+	flex-flow: row wrap
 	justify-content: space-around
 	height: 70px
-	border: 1px solid #73738d
+	border: 1px solid $innerBorderPlaylist
 	border-top: none
 	padding: 3px 3px 0 3px
 	text-align: center
 
-.inputFile
-	display: none
-
-.inputFileLabel
-	width: 50%
-	font-weight: bold
-	font-size: 14px
-	margin-bottom: auto
-	border: 1px solid transparent
-	border-radius: 40px
-	cursor: pointer
-	margin: auto
-	&:hover
-		border: 1px solid #37d739
-		border-radius: 40px
 .dragFilesHere
-	// border: 1px solid #37d739
 	font-weight: bold
 	font-size: 14px
 	margin: auto
 	width: 100%
-	height: 30px
-	border: 1px solid #37d739
+	height: 50px
+	border: 1px solid $greenColor
 	border-radius: 10px
-	line-height: 30px
+	line-height: 50px
 
 .active-track
 	color: #fff!important
 	cursor: pointer
-
-.transition-rewind
-	transition: left 1s
-
-.notransition-rewind
-	transition: none !important
-
 
 .lazyScroll
 	animation: lazyScroll linear

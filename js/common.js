@@ -7,7 +7,9 @@ var btnReset = document.querySelector('#btn-reset');
 var btnPrev = document.querySelector('#btn-prev');
 var btnNext = document.querySelector('#btn-next');
 var btnRewind = document.querySelector('#btn-rewind');
+var btnVolume = document.querySelector('#btn-volume');
 var fieldRewind = document.querySelector('#winamp-main-bottom__rewind');
+var fieldVolume = document.querySelector('#winamp-main-right__volume');
 var btnTogglePlaylist = document.querySelector('#btn-playlist');
 var audioTitle = document.querySelector('.winamp-main-right-title');
 var audioTitleName = document.querySelector('.winamp-main-right__marquee-name');
@@ -30,7 +32,7 @@ contentDragAndDrop.addEventListener("drop", function(e){
 
 		for (var song in files) {
 			if (!files[song].hasOwnProperty('name') && !(typeof(files[song].name) === 'undefined')) {
-				playlistContent += '<li onclick="playFromPlaylist(' + i + ')" class="playListTrack"><span id="trackDesc' + i + '">' + files[song].name + '</span><audio class="track" id="audioHidden' + i + '" src="' + tracksDir + files[song].name + '"></audio></li>';
+				playlistContent += '<li onclick="playFromPlaylist(' + i + ')" class="playListTrack"><span id="trackDesc' + i + '">' + files[song].name + '</span><audio controls class="track" id="audioHidden' + i + '" src="' + tracksDir + files[song].name + '"></audio></li>';
 				i++;
 			};
 		};
@@ -152,6 +154,39 @@ function showActiveTrackInPlaylist(){
 	document.querySelector('#audioHidden' + currentTrack).parentNode.className += " active-track";
 };
 
+// rewindTrack
+fieldRewind.addEventListener("click", function(e, trackId){
+	// var posXFieldRewind = this.offsetWidth - e.offsetX;
+	// console.log(posXFieldRewind);
+	// btnRewind.style.right = posXFieldRewind + 'px';
+
+	var posXPercent = (e.offsetX/this.offsetWidth)*89;
+	// console.log(posXPercent);
+	var posXPercent1 = (e.offsetX/this.offsetWidth);
+	// console.log(posXPercent1);
+	btnRewind.style.left = posXPercent + '%';
+
+	var audioHiddenPlay = document.querySelector('#audioHidden' + currentTrack);
+	var trackWidth = Math.floor(audioHiddenPlay.duration);
+
+	var setTimeFieldRewind = trackWidth*posXPercent/89;
+	console.log(trackWidth*posXPercent/89);
+	audioHiddenPlay.currentTime = setTimeFieldRewind;
+
+	console.log(89 - posXPercent);
+});
+
+// rewindVolume
+fieldVolume.addEventListener("click", function(e){
+	var posXpersent = (e.offsetX*75)/this.offsetWidth;
+	var listSounds = document.querySelectorAll('audio');
+	var posXpx = (e.offsetX)/this.offsetWidth;
+	btnVolume.style.left = posXpersent + '%';
+	for (var i = 0; i <= listSounds.length-1; i++) {
+		listSounds[i].volume = posXpx;
+	};
+});
+
 function lengthTrack(trackId) {
 	btnRewind.classList.remove('lazyScroll');
 	var audioHiddenPlay = document.querySelector('#audioHidden' + currentTrack);
@@ -176,7 +211,7 @@ btnTogglePlaylist.addEventListener('click', function(){
 
 var body = document.querySelector('body');
 body.addEventListener("drop", prevDefault);
-body.addEventListener("dragenter", psrevDefault);
+body.addEventListener("dragenter", prevDefault);
 body.addEventListener("dragover", prevDefault);
 
 function prevDefault(e){

@@ -174,8 +174,9 @@ ul {
   height: 5px;
   border-top: 1px solid #450d10;
   border-bottom: 1px solid #bb617d;
-  width: 38%;
+  width: 37%;
   border-radius: 10px;
+  cursor: pointer;
 }
 .winamp-main-right__volume button {
   position: absolute;
@@ -185,9 +186,9 @@ ul {
   height: 11px;
   font-size: 0;
   outline: none;
-  cursor: pointer;
   border: 1px solid #000;
   background: url("../img/sprite.png") #efe0b5 -119px 15px;
+  cursor: pointer;
 }
 .winamp-main-right__volume button:hover {
   opacity: 0.8;
@@ -208,16 +209,15 @@ ul {
   border-left: 2px solid #1c1d31;
   border-bottom: 2px solid #6c6a80;
   border-right: 2px solid #6c6a80;
+  cursor: pointer;
 }
 .winamp-main-bottom__rewind button {
   position: absolute;
-  left: 0;
   top: 0;
   width: 30px;
   height: 10px;
   font-size: 0;
   outline: none;
-  cursor: pointer;
   background: url("../img/sprite.png") #efe0b5 -43px 25px;
 }
 .winamp-main-bottom__rewind button:hover {

@@ -32,7 +32,7 @@ contentDragAndDrop.addEventListener("drop", function(e){
 
 		for (var song in files) {
 			if (!files[song].hasOwnProperty('name') && !(typeof(files[song].name) === 'undefined')) {
-				playlistContent += '<li onclick="playFromPlaylist(' + i + ')" class="playListTrack"><span id="trackDesc' + i + '">' + files[song].name + '</span><audio controls class="track" id="audioHidden' + i + '" src="' + tracksDir + files[song].name + '"></audio></li>';
+				playlistContent += '<li onclick="playFromPlaylist(' + i + ')" class="playListTrack"><span id="trackDesc' + i + '">' + files[song].name + '</span><audio class="track" id="audioHidden' + i + '" src="' + tracksDir + files[song].name + '"></audio></li>';
 				i++;
 			};
 		};
@@ -69,6 +69,8 @@ function audioNext() {
 	loadAudioFilename();
 	loadDuration();
 	audioPlay(currentTrack);
+	lengthTrack();
+	btnRewind.style.animationPlayState = "running";
 };
 
 btnPrev.addEventListener('click', function(){
@@ -87,6 +89,8 @@ function audioPrev() {
 	loadAudioFilename();
 	loadDuration();
 	audioPlay(currentTrack);
+	lengthTrack();
+	btnRewind.style.animationPlayState = "running";
 };
 
 btnPlay.addEventListener('click', function(){
@@ -99,7 +103,12 @@ function audioPlay(trackId) {
 	loadDuration();
 	loadAudioFilename();
 	loadTime();
-	lengthTrack();
+	var audioHiddenPlay = document.querySelector('#audioHidden' + currentTrack);
+	var trackWidth = Math.floor(audioHiddenPlay.duration);
+	btnRewind.style.animationDuration = trackWidth + 's';
+	btnRewind.classList.remove('spinIt');
+	btnRewind.classList.add('lazyScroll');
+	btnRewind.style.animationPlayState = "running";
 };
 
 function loadAudioFilename(trackId) {
@@ -115,14 +124,16 @@ function loadDuration(trackId) {
 
 function playFromPlaylist(trackId) {
 	currentTrack = trackId;
-	audioReset();
 	audioPause();
+	audioReset();
+	document.querySelector('#audioHidden' + trackId).play();
+	btnRewind.classList.remove('spinIt');
+	btnRewind.style.animationPlayState = "running";
+	// lengthTrack();
 	loadAudioFilename();
 	loadDuration();
 	loadTime();
-	lengthTrack();
 	showActiveTrackInPlaylist();
-	document.querySelector('#audioHidden' + trackId).play();
 };
 
 function loadTime(trackId) {
@@ -136,6 +147,7 @@ function audioPause() {
 	var sounds = document.getElementsByTagName('audio');
 	for(var i=0; i<sounds.length; i++){
 		sounds[i].pause();
+		btnRewind.style.animationPlayState = "paused";
 	};
 };
 
@@ -144,6 +156,7 @@ function audioReset() {
 	for(var i=0; i<sounds.length; i++){
 		sounds[i].currentTime = 0;
 	};
+	lengthTrack();
 };
 
 function showActiveTrackInPlaylist(){
@@ -156,25 +169,48 @@ function showActiveTrackInPlaylist(){
 
 // rewindTrack
 fieldRewind.addEventListener("click", function(e, trackId){
-	// var posXFieldRewind = this.offsetWidth - e.offsetX;
-	// console.log(posXFieldRewind);
-	// btnRewind.style.right = posXFieldRewind + 'px';
-
 	var posXPercent = (e.offsetX/this.offsetWidth)*89;
-	// console.log(posXPercent);
-	var posXPercent1 = (e.offsetX/this.offsetWidth);
-	// console.log(posXPercent1);
-	btnRewind.style.left = posXPercent + '%';
+	console.log(posXPercent + '%');
+	console.log((89 - posXPercent) + '%');
+	console.log((89 - posXPercent)/89);
+	// btnRewind.style.left = posXPercent + '%';
 
 	var audioHiddenPlay = document.querySelector('#audioHidden' + currentTrack);
 	var trackWidth = Math.floor(audioHiddenPlay.duration);
-
 	var setTimeFieldRewind = trackWidth*posXPercent/89;
 	console.log(trackWidth*posXPercent/89);
 	audioHiddenPlay.currentTime = setTimeFieldRewind;
-
-	console.log(89 - posXPercent);
+	btnRewind.style.animationDuration = trackWidth*posXPercent/89 + 's';
+	console.log(trackWidth-(trackWidth*posXPercent/89));
+	var trackWidthDur = trackWidth - (trackWidth*posXPercent/89);
+	changeLenTrack(posXPercent, trackWidthDur);
+	console.log(trackWidthDur);
 });
+
+function changeLenTrack(posPx, trackWidthD) {
+	btnRewind.classList.remove('spinIt');
+	var style = document.createElement('style');
+	style.type = 'text/css';
+	var keyFrames = '\
+	@keyframes spinIt {\
+	    from {\
+	        left: (A_DYNAMIC_VALUE);\
+	    }\
+	    to {\
+	        left: 216px;\
+	    }\
+	}';
+	style.innerHTML = keyFrames.replace(/A_DYNAMIC_VALUE/g, (posPx/89)*216 + 'px');
+	document.getElementsByTagName('head')[0].appendChild(style);
+	btnRewind.style.left = (posPx/89)*216 + 'px';
+	setTimeout(function() {
+		btnRewind.classList.add('spinIt');
+	},1000);
+	console.log(trackWidthD);
+	audioPlay(currentTrack);
+	btnRewind.style.animationDuration = trackWidthD + 's';
+	btnRewind.classList.remove('lazyScroll');
+};
 
 // rewindVolume
 fieldVolume.addEventListener("click", function(e){
@@ -186,6 +222,15 @@ fieldVolume.addEventListener("click", function(e){
 		listSounds[i].volume = posXpx;
 	};
 });
+
+function resetVolume() {
+	var sounds = document.getElementsByTagName('audio');
+	for(var i=0; i<sounds.length; i++){
+		sounds[i].volume = 0;
+	};
+};
+
+resetVolume();
 
 function lengthTrack(trackId) {
 	btnRewind.classList.remove('lazyScroll');

@@ -13,8 +13,7 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -32,20 +31,16 @@ ul {
 }
 
 .wrap-winamp {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .winamp {
   width: 274px;
   border: 1px solid #506276;
   padding: 0 2px 2px 2px;
+  background: -webkit-radial-gradient(#3f3e60, #1c1b2b);
   background: radial-gradient(#3f3e60, #1c1b2b);
   color: #37d739;
 }
@@ -57,18 +52,10 @@ ul {
 }
 
 .winamp-main {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 6px 2px 0 5px;
   margin-top: 2px;
   border: 1px solid #595b68;
@@ -116,8 +103,7 @@ ul {
 }
 .winamp-main-right__title p {
   position: absolute;
-  -webkit-animation: winamp-main-right__marquee 10s linear infinite alternate;
-          animation: winamp-main-right__marquee 10s linear infinite alternate;
+  animation: winamp-main-right__marquee 10s linear infinite alternate;
 }
 
 .winamp-main-right__quality {
@@ -188,7 +174,6 @@ ul {
   outline: none;
   border: 1px solid #000;
   background: url("../img/sprite.png") #efe0b5 -119px 15px;
-  cursor: pointer;
 }
 .winamp-main-right__volume button:hover {
   opacity: 0.8;
@@ -295,16 +280,9 @@ ul {
 }
 
 .winamp-main-right__marquee {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   width: 95%;
 }
 .winamp-main-right__marquee span {
@@ -317,17 +295,7 @@ ul {
 }
 
 .winamp-main-right__marquee:hover {
-  -webkit-animation-play-state: paused;
-          animation-play-state: paused;
-}
-
-@-webkit-keyframes winamp-main-right__marquee {
-  0% {
-    left: 180px;
-  }
-  100% {
-    left: -180px;
-  }
+  animation-play-state: paused;
 }
 
 @keyframes winamp-main-right__marquee {
@@ -356,18 +324,13 @@ ul {
 }
 
 .winamp-playlist-content {
+  display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
   display: -o-flex;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  flex-flow: row wrap;
+  justify-content: space-around;
   height: 70px;
   border: 1px solid #73738d;
   border-top: none;
@@ -392,17 +355,7 @@ ul {
 }
 
 .lazyScroll {
-  -webkit-animation: lazyScroll linear;
-          animation: lazyScroll linear;
-}
-
-@-webkit-keyframes lazyScroll {
-  from {
-    left: 0px;
-  }
-  to {
-    left: 216px;
-  }
+  animation: lazyScroll linear;
 }
 
 @keyframes lazyScroll {
@@ -413,5 +366,6 @@ ul {
     left: 216px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */
+.spinIt {
+  animation: spinIt 3s linear forwards;
+}

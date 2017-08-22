@@ -71,6 +71,7 @@ function audioNext() {
 	audioPlay(currentTrack);
 	lengthTrack();
 	btnRewind.style.animationPlayState = "running";
+	btnRewind.style.left = 0;
 };
 
 btnPrev.addEventListener('click', function(){
@@ -91,6 +92,7 @@ function audioPrev() {
 	audioPlay(currentTrack);
 	lengthTrack();
 	btnRewind.style.animationPlayState = "running";
+	btnRewind.style.left = 0;
 };
 
 btnPlay.addEventListener('click', function(){
@@ -127,8 +129,8 @@ function playFromPlaylist(trackId) {
 	audioPause();
 	audioReset();
 	document.querySelector('#audioHidden' + trackId).play();
-	btnRewind.classList.remove('spinIt');
 	btnRewind.style.animationPlayState = "running";
+	btnRewind.classList.remove('spinIt');
 	// lengthTrack();
 	loadAudioFilename();
 	loadDuration();
@@ -205,7 +207,10 @@ function changeLenTrack(posPx, trackWidthD) {
 	btnRewind.style.left = (posPx/89)*216 + 'px';
 	setTimeout(function() {
 		btnRewind.classList.add('spinIt');
-	},1000);
+	}, 10);
+	setTimeout(function() {
+		btnRewind.style.left = 0;
+	}, 1000);
 	console.log(trackWidthD);
 	audioPlay(currentTrack);
 	btnRewind.style.animationDuration = trackWidthD + 's';

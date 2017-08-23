@@ -111,6 +111,7 @@ function audioPlay(trackId) {
 	btnRewind.classList.remove('spinIt');
 	btnRewind.classList.add('lazyScroll');
 	btnRewind.style.animationPlayState = "running";
+	analyserBarAnimations(trackId);
 };
 
 function loadAudioFilename(trackId) {
@@ -136,6 +137,7 @@ function playFromPlaylist(trackId) {
 	loadDuration();
 	loadTime();
 	showActiveTrackInPlaylist();
+	analyserBarAnimations(trackId);
 };
 
 function loadTime(trackId) {
@@ -266,4 +268,43 @@ body.addEventListener("dragover", prevDefault);
 
 function prevDefault(e){
 	e.preventDefault();
+};
+
+
+function analyserBarAnimations(trackId) {
+	var audio = new Audio();
+	audio.src = document.querySelector('#audioHidden' + trackId).src;
+	var source = audio.src;
+	audio.controls = true;
+	audio.loop = true;
+	audio.autoplay = true;
+	initAnalyser(audio);
+};
+window.addEventListener("load", initAnalyser, false);
+
+function initAnalyser(audio) {
+	var context = new AudioContext();
+	var analyser = context.createAnalyser();
+	var canvas = document.querySelector('#analyser_render');
+	var ctx = canvas.getContext('2d');
+	var source = context.createMediaElementSource(audio); 
+	source.connect(analyser);
+	analyser.connect(context.destination);
+	analyserAnimations(analyser);
+};
+
+function analyserAnimations(analyser) {
+	window.requestAnimationFrame(analyserAnimations);
+	var fbc_array = new Uint8Array(analyser.frequencyBinCount);
+	analyser.getByteFrequencyData(fbc_array);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = '#00CCFF';
+	var bars = 100;
+	for (var i = 0; i < bars; i++) {
+		var bar_x = i * 3;
+		var bar_width = 2;
+		var bar_height = -(fbc_array[i] / 2);
+		//  fillRect( x, y, width, height );
+		ctx.fillRect(bar_x, canvas.height, bar_width, bar_height);
+	}
 };
